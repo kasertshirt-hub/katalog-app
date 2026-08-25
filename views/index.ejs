@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Katalog Produk</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header>
+    <a class="logo" href="/">katalog<span>.</span></a>
+    <nav><span>Katalog publik</span></nav>
+  </header>
+
+  <main>
+    <div class="eyebrow">Koleksi pilihan</div>
+    <h1>Temukan produk yang layak dibawa pulang.</h1>
+    <p class="intro">Produk pilihan dengan kualitas dan cerita di baliknya.</p>
+
+    <% if (products.length) { %>
+      <section class="catalog-grid" aria-label="Daftar produk">
+        <% products.forEach(product => { %>
+          <article class="product">
+            <div class="product-image">
+              <% if (product.image) { %><img src="<%= product.image %>" alt="<%= product.name %>"><% } else { %><span><%= product.name.slice(0, 1).toUpperCase() %></span><% } %>
+            </div>
+            <div class="product-body">
+              <h2><%= product.name %></h2>
+              <p><%= product.description %></p>
+              <div class="price">Rp <%= product.price.toLocaleString('id-ID') %></div>
+            </div>
+          </article>
+        <% }) %>
+      </section>
+    <% } else { %>
+      <div class="empty">Belum ada produk di katalog.</div>
+    <% } %>
+  </main>
+</body>
+</html>

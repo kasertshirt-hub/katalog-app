@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin | Katalog</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header>
+    <a class="logo" href="/">katalog<span>.</span></a>
+    <nav>
+      <a href="/">Lihat katalog</a>
+      <% if (authenticated) { %><a href="/logout">Logout</a><% } %>
+    </nav>
+  </header>
+
+  <main>
+    <% if (!authenticated) { %>
+      <section class="auth-panel panel">
+        <div class="eyebrow">Area terbatas</div>
+        <h1>Masuk ke admin.</h1>
+        <% if (error) { %><div class="notice error"><%= error %></div><% } %>
+        <form action="/login" method="post">
+          <label for="username">Username</label>
+          <input id="username" name="username" type="text" autocomplete="username" required>
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password" autocomplete="current-password" required>
+          <button type="submit">Masuk</button>
+        </form>
+      </section>
+    <% } else { %>
+      <div class="eyebrow">Ruang kerja admin</div>
+      <h1>Kelola katalog.</h1>
+      <% if (error) { %><div class="notice error"><%= error %></div><% } %>
+
+      <div class="admin-layout">
+        <section class="panel">
+          <h2>Tambah produk</h2>
+          <form action="/admin/add" method="post" enctype="multipart/form-data">
+            <label for="name">Nama produk</label>
+            <input id="name" name="name" maxlength="120" required>
+            <label for="description">Deskripsi</label>
+            <textarea id="description" name="description" maxlength="500" required></textarea>
+            <label for="price">Harga (Rp)</label>
+            <input id="price" name="price" type="number" min="0" step="1000" required>
+            <label for="image">Foto produk</label>
+            <input id="image" name="image" type="file" accept="image/jpeg,image/png,image/webp,image/gif">
+            <button type="submit">Tambah ke katalog</button>
+          </form>
+        </section>
+
+        <section>
+          <h2>Produk aktif (<%= products.length %>)</h2>
+          <% if (products.length) { %>
+            <div class="admin-products">
+              <% products.forEach(product => { %>
+                <article class="product">
+                  <div class="product-image">
+                    <% if (product.image) { %><img src="<%= product.image %>" alt="<%= product.name %>"><% } else { %><span><%= product.name.slice(0, 1).toUpperCase() %></span><% } %>
+                  </div>
+                  <div class="product-body">
+                    <h3><%= product.name %></h3>
+                    <p><%= product.description %></p>
+                    <div class="price">Rp <%= product.price.toLocaleString('id-ID') %></div>
+                    <form action="/admin/delete/<%= product.id %>" method="post" onsubmit="return confirm('Yakin ingin menghapus produk ini?')">
+                      <button class="delete" type="submit">Hapus produk</button>
+                    </form>
+                  </div>
+                </article>
+              <% }) %>
+            </div>
+          <% } else { %><div class="empty">Belum ada produk.</div><% } %>
+        </section>
+      </div>
+    <% } %>
+  </main>
+</body>
+</html>

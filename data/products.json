@@ -1,0 +1,26 @@
+[
+  {
+    "id": "sample-1",
+    "name": "Kopi Arabika Gayo",
+    "description": "Biji kopi dengan aroma floral dan rasa manis yang seimbang.",
+    "price": 85000,
+    "image": "",
+    "createdAt": "2026-08-25T00:00:00.000Z"
+  },
+  {
+    "id": "sample-2",
+    "name": "Madu Hutan Murni",
+    "description": "Madu alami dengan rasa khas dan tekstur lembut.",
+    "price": 120000,
+    "image": "",
+    "createdAt": "2026-08-24T00:00:00.000Z"
+  },
+  {
+    "id": "b7b55738-2f75-4ab3-bcad-d1fdea5d1ad9",
+    "name": "ID CARD BAHAN PVC",
+    "description": "ID CARD BAHAN PVC",
+    "price": 15000,
+    "image": "/uploads/1787652306102-54792918.png",
+    "createdAt": "2026-08-25T10:05:06.112Z"
+  }
+]

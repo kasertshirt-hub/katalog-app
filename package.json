@@ -1,0 +1,23 @@
+{
+  "name": "katalog-app",
+  "version": "1.0.0",
+  "description": "Katalog produk sederhana dengan dashboard admin",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "node --watch app.js"
+  },
+  "keywords": [
+    "express",
+    "ejs",
+    "catalog"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "ejs": "^6.0.1",
+    "express": "^5.2.1",
+    "express-session": "^1.19.0",
+    "multer": "^2.2.0"
+  }
+}
